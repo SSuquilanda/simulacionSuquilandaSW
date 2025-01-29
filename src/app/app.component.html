@@ -1,0 +1,36 @@
+<input type="text" [(ngModel)]="cedula" placeholder="Ingrese la cédula">
+<button (click)="consultar()">Consultar</button>
+<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+<table *ngIf="usuario">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Cédula</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.cedula }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 *ngIf="consumos.length > 0">Consumos Registrados</h3>
+<table *ngIf="consumos.length > 0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Estado</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let consumo of consumos">
+      <td>{{ consumo.id }}</td>
+      <td>{{ consumo.estado }}</td>
+      <td>{{ consumo.valor }}</td>
+    </tr>
+  </tbody>
+</table>
