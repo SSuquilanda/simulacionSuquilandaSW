@@ -1,36 +1,49 @@
-<input type="text" [(ngModel)]="cedula" placeholder="Ingrese la cédula">
-<button (click)="consultar()">Consultar</button>
-<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+<h1>Registro de Candidatos Presidenciales</h1>
 
-<table *ngIf="usuario">
+<form (submit)="registrarCandidato()">
+  <label>Nombre Completo Presidente:</label>
+  <input type="text" [(ngModel)]="candidato.nombrePresidente" required>
+
+  
+  
+  <label>Cedula del Presidente:</label>
+  <input type="text" [(ngModel)]="candidato.cedulaPresidente" required>
+
+  <label>Nombre del Vicepresidente:</label>
+  <input type="text" [(ngModel)]="candidato.nombreVicepresidente" required>
+
+  <label>Nombre del asambleista 1:</label>
+  <input type="text" [(ngModel)]="candidato.nombreAsambleista1" required>
+
+  <label>Nombre asambleista 2:</label>
+  <input type="text" [(ngModel)]="candidato.nombreAsambleista2" required>
+
+
+  <label>Nombre vocal 1:</label>
+  <input type="text" [(ngModel)]="candidato.nombreVocal1" required>
+  <label>Nombre vocal 2:</label>
+  <input type="text" [(ngModel)]="candidato.nombreVocal2" required>
+
+  <button (click)="registrarCandidato()">Registrar Candidato</button>
+</form>
+
+<h2>Lista de Candidatos</h2>
+<table>
   <thead>
     <tr>
-      <th>Nombre</th>
-      <th>Cédula</th>
+      <th>Presidente</th>
+      <th>Cedula</th>
+      <th>Vicepresidente</th>
+      <th>asambleista 1</th>
+      <th>asambleista 2</th>
+
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>{{ usuario.nombre }}</td>
-      <td>{{ usuario.cedula }}</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 *ngIf="consumos.length > 0">Consumos Registrados</h3>
-<table *ngIf="consumos.length > 0">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Estado</th>
-      <th>Valor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let consumo of consumos">
-      <td>{{ consumo.id }}</td>
-      <td>{{ consumo.estado }}</td>
-      <td>{{ consumo.valor }}</td>
+    <tr *ngFor="let c of candidatos">
+      <td>{{ c.nombrePresidente }} {{ c.apellidoPresidente }}</td>
+      <td>{{ c.nombreVicepresidente }} {{ c.apellidoVicepresidente }}</td>
+      <td>{{ c.partido }}</td>
     </tr>
   </tbody>
 </table>
